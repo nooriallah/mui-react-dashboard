@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.scss';
+import SideBar from './layout/MainLayout';
+import Navbar from './components/Navbar'
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Analysis from './pages/Analysis';
+import Settings from './pages/Settings';
+import ContextApi from './context/ContextApi';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <ContextApi>
+          <Navbar />
+          <Routes>
+
+            <Route path='/' exact element={<SideBar content={<Home />} />} />
+            <Route path='/products' exact element={<SideBar content={<Products />} />} />
+            <Route path='/analysis' exact element={<SideBar content={<Analysis />} />} />
+            <Route path='/settings' exact element={<SideBar content={<Settings />} />} />
+
+          </Routes>
+        </ContextApi>
+
+
+      </BrowserRouter>
+    </>
+
   );
 }
 
