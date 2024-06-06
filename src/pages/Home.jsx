@@ -8,6 +8,7 @@ import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 import './homeStyle.scss'
 import AccordionDash from '../components/AccordionDash';
 import { BarChart } from '../components/BarChart';
+import CountUp from 'react-countup';
 function Home() {
   return (
     <>
@@ -20,7 +21,7 @@ function Home() {
                 <CardContent>
                   <ShoppingBagOutlinedIcon />
                   <Typography gutterBottom variant="h4" component="div" marginBottom={3}>
-                    500.00$
+                  <CountUp delay={0.1} start={1} end={5000} duration={2} />.00$
                   </Typography>
                   <Typography variant='p' component={'span'} color={"#dfdfdf"}>Total Income</Typography>
                 </CardContent>
@@ -31,7 +32,7 @@ function Home() {
                 <CardContent>
                   <CreditCardOutlinedIcon />
                   <Typography gutterBottom variant="h4" component="div">
-                    4849.00$
+                  <CountUp delay={0.1} start={1} end={4849} duration={2} />.00$
                   </Typography>
                   <Typography variant='p' color={"#dfdfdf"}>Total Orders</Typography>
                 </CardContent>
@@ -49,7 +50,7 @@ function Home() {
                   <StoreIcon />
                   <Stack marginLeft={2}>
                     <Typography variant='h6' component={"h6"} >
-                      200K
+                    <CountUp delay={0.1} start={1} end={200} duration={2} />K
                     </Typography>
                     <Typography gutterBottom variant="p" component="p">
                       Total income
@@ -65,7 +66,7 @@ function Home() {
                   <StoreIcon />
                   <Stack marginLeft={2}>
                     <Typography variant='h6' component={"h6"} >
-                      200K
+                    <CountUp delay={0.1} start={1} end={53210} duration={2} />K
                     </Typography>
                     <Typography gutterBottom variant="p" component="p">
                       Total income

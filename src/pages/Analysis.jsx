@@ -3,12 +3,13 @@ import React from 'react'
 import GeoChart from '../components/GeoChart'
 import PieChart from '../components/PieChart'
 import HBarChart from '../components/HBarChart'
+import CountUp from 'react-countup';
 
 function Analysis() {
   return (
     <>
       <Grid container spacing={2} >
-        <Grid item  xs={12} md={8} lg={4}>
+        <Grid item xs={12} md={8} lg={4}>
           <Stack spacing={2} direction={'row'} >
 
             <Card sx={{ width: "250px", background: "darkblue", color: "#fff" }}>
@@ -18,7 +19,7 @@ function Analysis() {
                     Visitors
                   </Typography>
                   <Typography gutterBottom variant="h5" component="div" >
-                    500
+                    <CountUp delay={0.1} start={1} end={5000} duration={2} />
                   </Typography>
                   <Typography variant='p' component={'span'} color={"#dfdfdf"}>Since last week</Typography>
                 </CardContent>
@@ -32,7 +33,7 @@ function Analysis() {
                     Visitors
                   </Typography>
                   <Typography gutterBottom variant="h5" component="div">
-                    3200
+                    <CountUp delay={0.1} start={1} end={3800} duration={2} />
                   </Typography>
                   <Typography variant='p' color={"#dfdfdf"}>Since last week</Typography>
                 </CardContent>
@@ -48,7 +49,7 @@ function Analysis() {
                     Visitors
                   </Typography>
                   <Typography gutterBottom variant="h5" component="div">
-                    2000
+                    <CountUp delay={0.1} start={1} end={3500} duration={2} />
                   </Typography>
                   <Typography variant='p' color={"#dfdfdf"}>Since last week</Typography>
                 </CardContent>
@@ -61,7 +62,7 @@ function Analysis() {
                     Visitors
                   </Typography>
                   <Typography gutterBottom variant="h5" component="div">
-                    2300
+                    <CountUp delay={0.1} start={1} end={4000} duration={2} />
                   </Typography>
                   <Typography variant='p' color={"#dfdfdf"}>Since last week</Typography>
                 </CardContent>
@@ -86,7 +87,7 @@ function Analysis() {
           </Stack>
         </Grid>
 
-        <Grid item  xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <Stack >
             <Card sx={{ height: "300px", padding: "10px" }}>
               <PieChart />
