@@ -90,12 +90,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MainLayout({ content }) {
   const theme = useTheme();
-  // const [open, setOpen] = React.useState(true);
   const navigate = useNavigate()
 
-  // Handling open and close 
-  const {handleDrawerOpen, handleDrawerClose, open} = React.useContext(AppContext)
+  // Handling open and close dravel
+  const { handleDrawerClose, open } = React.useContext(AppContext)
 
+ 
 
   return (
     <Box sx={{ display: 'flex' }}>

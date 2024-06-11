@@ -1,26 +1,64 @@
-import React, { createContext } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 
 export const AppContext = createContext();
 
 
-function ContextApi({children}) {
+function ContextApi({ children }) {
 
   // AppBar menu open and close
-    const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  let apiLink = "https://dummyjson.com/products/";
+  const [rows, setRows] = useState([]);
+  const [openModal, setOpenModal] = React.useState(false);
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-      };
-    
-      const handleDrawerClose = () => {
-        setOpen(false);
-      };
 
-      
+
+  useEffect(() => {
+    if (window.screen.width < 768) {
+      setOpen(false)
+    }
+  }, [])
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+
+  // Getting products api
+  const getProducts = async () => {
+    // const data = await getDocs(empCollectionRef);
+    // setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    let data = await fetch(apiLink)
+    data = await data.json()
+    setRows(data.products)
+  }
+ 
+
+  // Adding product 
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
+
   return (
-    <AppContext.Provider value={{open, handleDrawerClose, handleDrawerOpen}}>
-        {children}
+    <AppContext.Provider value={{
+      open,
+      handleDrawerClose,
+      handleDrawerOpen,
+      apiLink,
+      rows,
+      setRows,
+      getProducts,
+      openModal,
+      setOpenModal,
+      handleCloseModal,
+      handleOpenModal
+    }}>
+      {children}
     </AppContext.Provider>
   )
 }

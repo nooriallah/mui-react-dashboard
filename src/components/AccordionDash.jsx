@@ -51,11 +51,13 @@ export default function AccordionDash() {
   };
 
   return (
-    <Box sx={{background: "red"}}>
+    <Box>
+
+      <Typography variant='h5' marginBottom={2}>FAQ's</Typography>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-       
+  
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Collapsible Group Item #1</Typography>
+          <Typography>How can I purchess your products?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -69,7 +71,7 @@ export default function AccordionDash() {
 
       <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Collapsible Group Item #2</Typography>
+          <Typography>Do you have online services?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -83,7 +85,7 @@ export default function AccordionDash() {
 
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>Collapsible Group Item #3</Typography>
+          <Typography>If I place an order, when will I receive the things, I ordered?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
