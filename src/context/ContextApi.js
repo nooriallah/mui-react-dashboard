@@ -11,6 +11,8 @@ function ContextApi({ children }) {
   let apiLink = "https://dummyjson.com/products/";
   const [rows, setRows] = useState([]);
   const [openModal, setOpenModal] = React.useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+
 
 
 
@@ -31,17 +33,18 @@ function ContextApi({ children }) {
 
   // Getting products api
   const getProducts = async () => {
-    // const data = await getDocs(empCollectionRef);
-    // setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     let data = await fetch(apiLink)
     data = await data.json()
     setRows(data.products)
   }
- 
+
 
   // Adding product 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
+
+  const handleOpenEditModal = (id) => setOpenEditModal(true);
+  const handleCloseEditModal = () => setOpenEditModal(false);
 
 
   return (
@@ -56,7 +59,11 @@ function ContextApi({ children }) {
       openModal,
       setOpenModal,
       handleCloseModal,
-      handleOpenModal
+      handleOpenModal,
+      openEditModal,
+      setOpenEditModal,
+      handleOpenEditModal,
+      handleCloseEditModal,
     }}>
       {children}
     </AppContext.Provider>

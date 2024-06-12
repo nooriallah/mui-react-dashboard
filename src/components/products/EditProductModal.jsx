@@ -22,7 +22,9 @@ const style = {
     p: 4,
 };
 
-export default function AddProductModal({ openModal, handleCloseModal }) {
+
+
+export default function EditProductModal({ openEditModal, handleCloseEditModal }) {
 
     const { apiLink, rows } = useContext(AppContext)
     const [productsInfo, setProductsInfo] = useState({
@@ -33,6 +35,7 @@ export default function AddProductModal({ openModal, handleCloseModal }) {
     })
 
 
+
     const handleOnChange = (evt) => {
         const { name, value } = evt.target;
         setProductsInfo({ ...productsInfo, [name]: value })
@@ -41,25 +44,37 @@ export default function AddProductModal({ openModal, handleCloseModal }) {
 
     const handleOnSubmit = (evt) => {
         evt.preventDefault();
-        handleCloseModal()
+        handleCloseEditModal()
 
         Swal.fire({
-            title: "SUCCESS",
-            text: "Your product added successfuly added",
+            title: "UPDATED",
+            text: "Your product added successfuly updated",
             icon: "success",
             confirmButtonColor: "#3085d6",
             confirmButtonText: "OK",
-        }).then((result) => {
-            setProductsInfo({ productName: "", price: "", category: "", brand: "", })
-        });
+        })
     }
 
+
+    const getSingleProduct = async (id) => {
+        fetch(apiLink + id)
+            .then(data => data.json())
+            .then(data => setProductsInfo(data))
+
+        // setProductsInfo(data)
+    }
+    useEffect(() => {
+        getSingleProduct(1)
+
+        console.log(productsInfo.category);
+
+    }, [])
 
     return (
         <div>
             <Modal
-                open={openModal}
-                onClose={handleCloseModal}
+                open={openEditModal}
+                onClose={handleCloseEditModal}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -74,12 +89,11 @@ export default function AddProductModal({ openModal, handleCloseModal }) {
                         <Grid container spacing={3}>
                             <Grid item xs={12} >
                                 <TextField
-                                    value={productsInfo.productName}
+                                    value={productsInfo.title}
                                     onChange={handleOnChange}
                                     name='productName' fullWidth
                                     label="Product name"
                                     variant="outlined"
-                                    required
                                 />
                             </Grid>
                             <Grid item xs={6} >
@@ -145,10 +159,9 @@ export default function AddProductModal({ openModal, handleCloseModal }) {
                                 </TextField>
                             </Grid>
                             <Grid item xs={12} >
-                                <Button variant='outlined' type='submit' >Add new</Button>
+                                <Button variant='outlined' type='submit' >UPDATE</Button>
                             </Grid>
                         </Grid>
-
                     </Box>
                 </Box>
             </Modal>

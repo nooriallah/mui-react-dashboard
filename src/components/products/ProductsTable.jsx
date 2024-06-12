@@ -31,6 +31,7 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { AppContext } from "../../context/ContextApi";
 import AddProductModal from "./AddProductModal";
+import EditProductModal from "./EditProductModal";
 
 
 
@@ -40,7 +41,12 @@ export default function UsersList() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const empCollectionRef = collection(db, "products");
   
-  const { rows, setRows, getProducts, apiLink, handleOpenModal, openModal, handleCloseModal } = useContext(AppContext)
+  const { 
+    rows, setRows, 
+    getProducts, apiLink, 
+    handleOpenModal, openModal, handleCloseModal,
+    handleCloseEditModal, openEditModal, handleOpenEditModal
+  } = useContext(AppContext)
 
 
   useEffect(() => {
@@ -75,8 +81,6 @@ export default function UsersList() {
   };
 
   const deleteApi = async (id) => {
-    // const userDoc = doc(db, "products", id);
-    // await deleteDoc(userDoc);
     fetch(apiLink + id, { method: 'DELETE' })
       .then((data) => data.json())
       .then((data) => {
@@ -94,12 +98,18 @@ export default function UsersList() {
     }
   };
 
+
+  const editUser = (id) => {
+    handleOpenEditModal()
+  }
+
   return (
     <>
 
-      {/* Add product modal  */}
+      {/* Add and edit product modal  */}
 
       <AddProductModal openModal={openModal} handleCloseModal={handleCloseModal} />
+      <EditProductModal openEditModal={openEditModal} handleCloseEditModal={handleCloseEditModal} />
 
       {rows.length > 0 && (
         <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }} >
@@ -180,7 +190,7 @@ export default function UsersList() {
                                 cursor: "pointer",
                               }}
                               className="cursor-pointer"
-                            // onClick={() => editUser(row.id)}
+                            onClick={() => editUser(row.id)}
                             />
                             <DeleteIcon
                               style={{
