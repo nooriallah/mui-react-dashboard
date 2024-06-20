@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ProductsTable from '../components/products/ProductsTable'
 import { Grid } from '@mui/material'
 
-function products() {
+function Products() {
 
 
 
@@ -17,4 +17,4 @@ function products() {
   )
 }
 
-export default products
+export default Products
